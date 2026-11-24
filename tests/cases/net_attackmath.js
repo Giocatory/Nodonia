@@ -1,0 +1,13 @@
+const { load, CORE } = require('../load.js');
+const C = load([...CORE, 'scripts/ui/ws-attack.js']); const ND = C.ND, M = ND.attackMath;
+let fails = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fails++; };
+ok(Math.abs(M.nakamoto(0.1, 5) - 0.0009137) < 1e-6, 'Накамото q=0.1 z=5: ' + M.nakamoto(0.1, 5)); ok(Math.abs(M.nakamoto(0.3, 5) - 0.1773523) < 1e-5, 'Накамото q=0.3 z=5: ' + M.nakamoto(0.3, 5)); ok(M.nakamoto(0.5, 6) === 1, 'q≥0.5 → 1');
+const rng = new ND.RNG(1); const s = M.simDouble(0.3, 5, 20000, rng); ok(Math.abs(s - 0.1976) < 0.012 && s > M.nakamoto(0.3, 5), 'МК двойной траты ≈ точное 0.1976 (Розенфельд), выше приближения Накамото: ' + s.toFixed(4));
+ok(Math.abs(M.selfishThreshold(0) - 1 / 3) < 1e-9 && Math.abs(M.selfishThreshold(0.5) - 0.25) < 1e-9, 'порог selfish: 1/3 при γ=0, 1/4 при γ=½');
+ok(M.selfishFormula(0.4, 0.5) > 0.4 && M.selfishFormula(0.2, 0) < 0.2, 'формула: α=0.4 выгодно, α=0.2 (γ=0) невыгодно');
+const sm = M.selfishSim(0.4, 0.5, 300000, new ND.RNG(2)); ok(Math.abs(sm - M.selfishFormula(0.4, 0.5)) < 0.02, 'МК selfish ≈ формула: ' + sm.toFixed(3) + ' vs ' + M.selfishFormula(0.4, 0.5).toFixed(3));
+ok(Math.abs(M.staleSim(10, 600, 200000, new ND.RNG(3)) - M.staleProb(10, 600)) < 0.004, 'доля устаревших блоков: МК ≈ 1−e^(−Δ/T)');
+ok(Math.abs(M.supply(1e9, 50, 210000) - 21e6) < 1, 'предел эмиссии 21 млн: ' + M.supply(1e9, 50, 210000));
+const d = M.difficulty({ window: 200, target: 600, days: 60, hr: x => x < 20 ? 100 : 40 }, new ND.RNG(4)); const early = d.filter(x => x[0] > 5 && x[0] < 18).map(x => x[1]), late = d.filter(x => x[0] >= 20 && x[0] < 23).map(x => x[1]), end = d.filter(x => x[0] > 50).map(x => x[1]); const av = a => a.reduce((x, y) => x + y, 0) / a.length;
+ok(av(late) > av(early) * 1.5 && Math.abs(av(end) - 10) < 3, 'сложность: после падения хэшрейта блоки замедляются и восстанавливаются (' + av(early).toFixed(1) + ' → ' + av(late).toFixed(1) + ' → ' + av(end).toFixed(1) + ')');
+console.log(fails ? 'FAILS ' + fails : 'ALL OK'); process.exit(fails ? 1 : 0);

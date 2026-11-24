@@ -1,0 +1,8 @@
+{
+  "name": "nodonia-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Тесты Нодонии: логика на чистом Node, смоук-тест интерфейса на Playwright",
+  "scripts": { "test": "node run_all.js", "smoke": "node ui_smoke.js" },
+  "devDependencies": { "playwright": "^1.45.0" }
+}

@@ -1,0 +1,21 @@
+const { chromium } = require('playwright'); const path = require('path'); const out = process.argv[2] || '/tmp/claude-0/shots';
+require('fs').mkdirSync(out, { recursive: true });
+(async () => {
+  const b = await chromium.launch(); const pg = await b.newPage({ viewport: { width: 1440, height: 900 } }); const errs = [];
+  pg.on('pageerror', e => errs.push('PAGEERR ' + e.message)); pg.on('console', m => { if (m.type() === 'error') errs.push('CONSOLE ' + m.text()); });
+  await pg.goto('file://' + path.resolve(__dirname, '../nodonia/index.html')); await pg.waitForTimeout(400);
+  const shot = async n => { await pg.waitForTimeout(300); await pg.screenshot({ path: out + '/' + n + '.png' }); };
+  await pg.evaluate(() => ND.ui.open('w:labs')); await shot('labs');
+  await pg.evaluate(() => ND.ui.open('w:labs', { lab: 'lab-raft-log' })); await shot('lab_detail');
+  await pg.click('text=Открыть стенд'); await pg.waitForTimeout(800); await shot('lab_open');
+  await pg.evaluate(() => ND.ui.open('w:tasks')); await shot('tasks');
+  await pg.evaluate(() => { const t = ND.reg.tasks.find(x => x.id === 't-raft-failover'); ND.ui.open('p:raft', { scheme: t.scheme(), task: t }); }); await pg.waitForTimeout(500);
+  await pg.click('text=Задание').catch(() => {}); await shot('task_open');
+  await pg.evaluate(() => ND.ui.open('w:quiz')); await pg.click('button:text-is("Начать")'); await shot('quiz');
+  await pg.click('.btn >> nth=0').catch(() => {}); await shot('quiz_a');
+  await pg.evaluate(() => ND.ui.open('w:exam')); await shot('exam');
+  await pg.evaluate(() => ND.ui.open('w:glossary')); await shot('gloss');
+  await pg.evaluate(() => ND.ui.open('w:arch')); await shot('arch1'); await pg.click('text=Подбор архитектуры'); await shot('arch2'); await pg.click('button:text-is("Калькуляторы")'); await shot('arch3');
+  await pg.evaluate(() => ND.ui.open('w:attack')); await shot('attack');
+  console.log(errs.length ? errs.join('\n') : 'БЕЗ ОШИБОК'); await b.close();
+})();

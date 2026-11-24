@@ -1,0 +1,12 @@
+const { load, CORE } = require('../load.js');
+const C = load([...CORE, 'scripts/ui/ws-arch.js']); const A = C.ND.arch;
+let fails = 0; const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) fails++; };
+ok(A.patterns.length >= 15 && new Set(A.patterns.map(p => p.id)).size === A.patterns.length, 'паттернов: ' + A.patterns.length);
+ok(A.patterns.every(p => /^(p|w):/.test(p.open) && p.n && p.p && p.i && p.pr && p.co), 'поля паттернов заполнены');
+const ids = A.recommend({ trust: 'open', cons: 'strong', part: 'cp', scale: 'both', size: 'l', tx: 'no' }).map(x => x.id);
+ok(ids.slice(0, 3).includes('pow') && ids.slice(0, 3).includes('pos'), 'открытая сеть → PoW и PoS в тройке: ' + ids.slice(0, 4));
+ok(A.recommend({ trust: 'org', cons: 'strong', part: 'cp', scale: 'read', size: 's', tx: 'no' })[0].id === 'bft', 'консорциум → BFT');
+ok(A.recommend({ trust: 'own', cons: 'eventual', part: 'ap', scale: 'write', size: 'm', tx: 'no' }).some(r => r.id === 'crdt'), 'AP/итоговая → CRDT');
+ok(Math.abs(A.calc.avail(0.99, 2) - 0.9999) < 1e-12 && A.calc.bftTolerance(7).f === 2 && A.calc.raftTolerance(5).f === 2 && A.calc.quorum(5, 3, 3).strong, 'формулы доступности/кворумов');
+const m = A.calc.mmc(1, 1, 1); ok(m === null, 'M/M/c: ρ=1 → перегрузка'); const m1 = A.calc.mmc(0.5, 1, 1); ok(Math.abs(m1.w - 2) < 1e-9, 'M/M/1 ρ=.5: W = 1/(μ−λ) = 2, получено ' + m1.w);
+console.log(fails ? 'FAILS ' + fails : 'ALL OK'); process.exit(fails ? 1 : 0);
