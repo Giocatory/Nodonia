@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nodonia.ru/sitemap.xml

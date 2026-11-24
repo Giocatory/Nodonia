@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Нодония — бесплатный симулятор распределённых систем и блокчейна в браузере</title>
+<meta name="description" content="Нодония — открытый симулятор в браузере: Raft, Paxos, PBFT, gossip, CRDT, PoW, PoS, смарт-контракты, архитектуры сервисов. Лабораторные, задания с автопроверкой, тесты. Без установки и регистрации, бесплатно.">
+<meta name="theme-color" content="#070b14">
+<meta property="og:title" content="Нодония — распределённые системы и блокчейн в браузере">
+<meta property="og:description" content="Открытый симулятор: ломайте сети и узлы, смотрите, как работают консенсус, репликация и блокчейн. Для студентов и инженеров. Бесплатно и без регистрации.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://nodonia.ru/">
+<meta property="og:url" content="https://nodonia.ru/">
+<meta property="og:site_name" content="Нодония">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://nodonia.ru/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Нодония — симулятор распределённых систем и блокчейна">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","url":"https://nodonia.ru/","image":"https://nodonia.ru/assets/og.jpg","name":"Нодония","applicationCategory":"EducationalApplication","operatingSystem":"Любая (браузер)","inLanguage":"ru","license":"https://www.gnu.org/licenses/agpl-3.0.html","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"RUB"},"author":{"@type":"Person","name":"Giocatory","url":"https://github.com/Giocatory"},"description":"Открытый симулятор распределённых систем и блокчейна в браузере для студентов и инженеров."}</script>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://nodonia.ru/assets/og.jpg">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles/fonts.css">
+<link rel="stylesheet" href="styles/landing.css">
+</head>
+<body>
+<header class="top">
+ <div class="wrap hb">
+  <a class="logo" href="#top"><img src="assets/logo.svg" alt="" width="34" height="34">Нодония</a>
+  <button id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav">☰</button>
+  <nav id="nav">
+   <a href="#why">Почему</a><a href="#features">Возможности</a><a href="#topics">Что внутри</a><a href="#demo">Демо</a><a href="#screens">Скриншоты</a><a href="#opensource">Open source</a><a href="#support">Поддержать</a><a href="#feedback">Связь</a>
+   <a class="btn pri nav-cta" href="nodonia/">Запустить</a>
+  </nav>
+ </div>
+</header>
+
+<main id="top">
+<section class="hero">
+ <canvas id="net" aria-hidden="true"></canvas>
+ <div class="wrap">
+  <div class="pill"><i></i> Open source · AGPL-3.0 · бесплатно · без регистрации</div>
+  <h1>Сломай кластер.<br><span class="grad">Узнай, как он выжил.</span></h1>
+  <p class="lead">«Нодония» — симулятор распределённых систем и блокчейна. Выбирайте лидера в <b>Raft</b>, ловите дуэль в <b>Paxos</b>, ломайте <b>PBFT</b> двумя предателями, проводите атаку 51% на <b>PoW</b> и запускайте смарт-контракты с газом. Всё в браузере, без сервера, установки и аккаунтов.</p>
+  <div class="cta">
+   <a class="btn pri" href="nodonia/">▶ Открыть симулятор</a>
+   <a class="btn heart" href="#support">❤ Поддержать проект</a>
+   <a class="btn" data-cfg="repo" href="#" target="_blank" rel="noopener" hidden>★ GitHub</a>
+  </div>
+  <div class="hero-shot reveal"><img src="assets/screens/topology.webp" alt="Кластер Raft из пяти узлов в Нодонии: лидер, последователи и отказавший узел" width="1600" height="957"></div>
+  <div class="stats">
+   <div class="stat"><b data-count="15">15</b><span>протоколов и моделей систем</span></div>
+   <div class="stat"><b data-count="29">29</b><span>лабораторных работ</span></div>
+   <div class="stat"><b data-count="17">17</b><span>заданий с автопроверкой</span></div>
+   <div class="stat"><b>0 ₽</b><span>и ни одной регистрации</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="why" class="alt">
+ <div class="wrap">
+  <div class="eyebrow">Зачем это нужно</div>
+  <h2 class="sec-h reveal">Распределённые системы нельзя понять <span class="grad">по слайдам</span></h2>
+  <p class="sec-p reveal">Отказы узлов, потерянные сообщения, раздел сети и разошедшиеся часы — это то, что невозможно «увидеть» в учебнике. Настоящий кластер дорог и не воспроизводится: ошибка случилась один раз и исчезла. В Нодонии время виртуальное и детерминированное — любую историю можно перемотать, повторить и разобрать по шагам.</p>
+  <div class="scroll-x reveal"><table class="cmp">
+   <thead><tr><th></th><th class="us">Нодония</th><th>Реальный кластер (Docker, Kubernetes)</th><th>Визуализаторы одного алгоритма</th><th>Демо блокчейна</th></tr></thead>
+   <tbody>
+    <tr><td>Работает в браузере, без установки</td><td class="us y">✓</td><td class="n">✗</td><td class="y">✓</td><td class="y">✓</td></tr>
+    <tr><td>Консенсус, репликация и блокчейн в одном инструменте</td><td class="us y">✓</td><td class="p">зависит от стенда</td><td class="n">✗ один алгоритм</td><td class="n">✗ только блокчейн</td></tr>
+    <tr><td>Можно ломать узлы, каналы, делить сеть</td><td class="us y">✓</td><td class="p">нужны инструменты</td><td class="p">частично</td><td class="n">✗</td></tr>
+    <tr><td>Воспроизводимость и шаг назад</td><td class="us y">✓</td><td class="n">✗</td><td class="p">редко</td><td class="n">✗</td></tr>
+    <tr><td>Проверка свойств безопасности (инварианты)</td><td class="us y">✓</td><td class="p">нужны тесты</td><td class="p">редко</td><td class="n">✗</td></tr>
+    <tr><td>Лабораторные, задания и экзамен на русском</td><td class="us y">✓</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td></tr>
+    <tr><td>Открытый код, можно развернуть у себя</td><td class="us y">✓</td><td class="y">✓</td><td class="p">по-разному</td><td class="p">по-разному</td></tr>
+    <tr><td>Работает на слабых ПК и планшетах</td><td class="us y">✓</td><td class="n">✗ тяжёлый</td><td class="y">✓</td><td class="y">✓</td></tr>
+   </tbody></table></div>
+  <p class="note reveal"><b>Это не замена реальным системам.</b> Нодония упрощает протоколы ради понимания: идеи, границы применимости и типичные ошибки видны сразу, а промышленные детали (диск, версии протокола, безопасность каналов) оставлены за кадром. Таблица составлена по открытым данным и обобщает типы инструментов; если вы знаете достойную альтернативу, <a href="#feedback">напишите нам</a>.</p>
+ </div>
+</section>
+
+<section id="features">
+ <div class="wrap">
+  <div class="eyebrow">Возможности</div>
+  <h2 class="sec-h reveal">Лаборатория распределённых систем <span class="grad">в одной вкладке</span></h2>
+  <div class="grid g3">
+   <div class="card reveal"><div class="ic">🕸️</div><h3>Схемы и сбои</h3><p>Узлы и каналы с задержкой, джиттером, потерями и дублями. Отказ узла, обрыв канала, раздел сети на группы — одним щелчком или командой.</p></div>
+   <div class="card reveal"><div class="ic">⏪</div><h3>Детерминированное время</h3><p>Виртуальные часы и seed: один и тот же сценарий воспроизводится точно. Есть шаг вперёд и назад, перемотка и ссылка «Поделиться».</p></div>
+   <div class="card reveal"><div class="ic">📈</div><h3>Диаграмма сообщений</h3><p>Пространственно-временная диаграмма показывает, кто что кому отправил и когда: потери, задержки, таймеры и ключевые события.</p></div>
+   <div class="card reveal"><div class="ic">✅</div><h3>Инварианты</h3><p>Симулятор сам проверяет свойства безопасности: «один лидер в терме», «исполнено одно и то же». Нарушение подсвечивается и сохраняется.</p></div>
+   <div class="card reveal"><div class="ic">⌨️</div><h3>Консоль и действия клиента</h3><p><code>crash n1</code>, <code>partition n1,n2 | n3,n4,n5</code>, <code>do put key=x value=1</code>, <code>run 10</code> — все действия записываются и воспроизводятся.</p></div>
+   <div class="card reveal"><div class="ic">⛓️</div><h3>Блокчейн изнутри</h3><p>SHA-256, цепочка блоков с PoW, кошельки на ECDSA secp256k1, дерево Меркла и SPV, виртуальная машина контрактов с газом.</p></div>
+   <div class="card reveal"><div class="ic">🛡️</div><h3>Атаки и экономика</h3><p>Двойная трата, атака 51%, эгоистичный майнинг, пересчёт сложности при падении хэшрейта, эмиссия и халвинг — с формулами и симуляцией.</p></div>
+   <div class="card reveal"><div class="ic">🏗️</div><h3>Архитектуры сервисов</h3><p>Монолит, балансировщик, кэш, очередь, каскадные отказы и retry storm. Каталог из 17 паттернов, подбор под требования и калькуляторы.</p></div>
+   <div class="card reveal"><div class="ic">🔒</div><h3>Всё у вас на устройстве</h3><p>Нет серверной части и слежки: схемы и результаты хранятся в браузере. Можно работать офлайн или выложить на любой статический хостинг.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="topics" class="alt">
+ <div class="wrap">
+  <div class="eyebrow">Что внутри</div>
+  <h2 class="sec-h reveal">От часов Лэмпорта <span class="grad">до атаки 51%</span></h2>
+  <div class="grid g4">
+   <div class="card reveal"><span class="tag">ОСНОВЫ</span><h3>Время и отказы</h3><p>Логические и векторные часы, детектор отказов (таймаут и phi-accrual), CAP и модели согласованности.</p></div>
+   <div class="card reveal"><span class="tag">КОНСЕНСУС</span><h3>Raft, Paxos, PBFT</h3><p>Выборы, репликация журнала, дуэль пропоузеров, смена вида, византийские узлы, Bully и Ring.</p></div>
+   <div class="card reveal"><span class="tag">ДАННЫЕ</span><h3>Репликация и транзакции</h3><p>Кворумы N/R/W, CRDT, 2PC и 3PC, gossip, консистентное хэширование, Chord и Kademlia, Kafka-подобный журнал.</p></div>
+   <div class="card reveal"><span class="tag">БЛОКЧЕЙН</span><h3>PoW, PoS, контракты</h3><p>Форки и реорганизации, финальность и слэшинг, кошельки, UTXO и счета, газ, реентерабельность.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="path">
+ <div class="wrap">
+  <div class="eyebrow">Как учиться</div>
+  <h2 class="sec-h reveal">Путь от «что такое кворум» <span class="grad">до проектирования архитектуры</span></h2>
+  <p class="sec-p reveal">Лабораторные ведут от простого к сложному: теория на странице, шаги в симуляторе, вопросы для самопроверки.</p>
+  <div class="path">
+   <div class="step reveal"><div class="n">1</div><div class="b"><h3>Основы: время, сбои, обнаружение</h3><p>Почему нет «единого времени», чем отказ отличается от медленности и почему идеальный детектор невозможен.</p></div></div>
+   <div class="step reveal"><div class="n">2</div><div class="b"><h3>Консенсус</h3><p>Raft, Paxos, PBFT: поймите, зачем нужно большинство, чем отличается n=2f+1 от n=3f+1 и как рушится безопасность при превышении допущений.</p></div></div>
+   <div class="step reveal"><div class="n">3</div><div class="b"><h3>Данные и репликация</h3><p>Кворумы, CRDT, транзакции 2PC/3PC, шардирование, потоковые журналы: где приходится платить согласованностью.</p></div></div>
+   <div class="step reveal"><div class="n">4</div><div class="b"><h3>Блокчейн</h3><p>Хэши, подписи, PoW и PoS, смарт-контракты, атаки и экономика: как открытая сеть договаривается без доверия.</p></div></div>
+   <div class="step reveal"><div class="n">5</div><div class="b"><h3>Архитектура</h3><p>Монолит, кэш, очередь, балансировщик, circuit breaker: что сломается первым и как это проверить расчётом.</p></div></div>
+   <div class="step reveal"><div class="n">6</div><div class="b"><h3>Проверка знаний</h3><p>17 заданий, где симулятор сам проверяет результат, тест из 101 вопроса и экзамен из 25 случайных вопросов.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="aud" class="aud alt">
+ <div class="wrap">
+  <div class="eyebrow">Для кого</div>
+  <h2 class="sec-h reveal">Одна платформа — <span class="grad">для студентов, преподавателей и инженеров</span></h2>
+  <div class="grid g3">
+   <div class="card reveal"><span class="tag">СТУДЕНТАМ</span><h3>Учись, ломая</h3><p>Информационная безопасность, системное и сетевое администрирование, программирование: увидьте то, что объясняют на лекции.</p></div>
+   <div class="card reveal"><span class="tag">ПРЕПОДАВАТЕЛЯМ</span><h3>Стенд в каждом браузере</h3><p>Лабораторные с методичкой, задания с автопроверкой, экзамен. Ничего не нужно ставить на классные ПК.</p></div>
+   <div class="card reveal"><span class="tag">ИНЖЕНЕРАМ</span><h3>Проверьте идею до кода</h3><p>Прикиньте, как поведёт себя схема при отказах и перегрузке, посчитайте кворумы и доступность, обсудите дизайн с командой по ссылке.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="demo">
+ <div class="wrap">
+  <div class="eyebrow">В действии</div>
+  <h2 class="sec-h reveal">25 секунд, чтобы <span class="grad">увидеть, как это работает</span></h2>
+  <p class="sec-p reveal">Выборы лидера в Raft, запись, отказ лидера, диаграмма сообщений, раздел сети и сеть PoW с атакующим.</p>
+  <div class="demo reveal"><video autoplay muted loop playsinline preload="metadata" poster="assets/screens/demo-poster.webp" aria-label="Демонстрация работы Нодонии"><source src="assets/demo.mp4" type="video/mp4"><img src="assets/demo.gif" alt="Демонстрация работы Нодонии"></video></div>
+ </div>
+</section>
+
+<section id="screens">
+ <div class="wrap">
+  <div class="center">
+   <div class="eyebrow">Скриншоты</div>
+   <h2 class="sec-h reveal">Посмотрите, <span class="grad">как это выглядит</span></h2>
+  </div>
+  <div class="shot-tabs" role="tablist">
+   <button class="shot-tab on" role="tab" aria-selected="true" data-src="assets/screens/topology.webp" data-alt="Кластер Raft" data-cap="Raft: лидер N4 выбран, N2 отказал. Состояние каждого узла — рядом с ним.">Raft</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/raft-diagram.webp" data-alt="Диаграмма сообщений" data-cap="Пространственно-временная диаграмма: сообщения, таймеры и события по времени.">Диаграмма</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/pbft.webp" data-alt="PBFT" data-cap="PBFT с двумя предателями из четырёх: допущение n ≥ 3f+1 нарушено.">PBFT</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/pow.webp" data-alt="Сеть PoW" data-cap="PoW-сеть с атакующим (красный узел, 62% хэшрейта): двойная трата.">PoW</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/services.webp" data-alt="Архитектура сервисов" data-cap="Клиент, сервис и БД: перегрузка и очереди после замедления сервиса.">Сервисы</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/vm.webp" data-alt="Смарт-контракты" data-cap="Виртуальная машина контрактов с газом: код, вызовы и откат изменений.">Контракты</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/arch.webp" data-alt="Каталог паттернов" data-cap="Каталог из 17 архитектурных паттернов с проблемой, идеей и ценой.">Паттерны</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/task.webp" data-alt="Задание с автопроверкой" data-cap="Задание: переживите отказ лидера. Цели отмечаются автоматически.">Задание</button>
+   <button class="shot-tab" role="tab" aria-selected="false" data-src="assets/screens/dark.webp" data-alt="Тёмная тема" data-cap="Тёмная тема — для долгих вечерних практикумов.">Тёмная тема</button>
+  </div>
+  <div class="frame reveal"><div class="bar"><i></i><i></i><i></i></div><img id="shot-img" src="assets/screens/topology.webp" alt="Кластер Raft" width="1600" height="957"></div>
+  <p class="shot-cap" id="shot-cap">Raft: лидер N4 выбран, N2 отказал. Состояние каждого узла — рядом с ним.</p>
+  <div class="cta"><a class="btn pri" href="nodonia/">▶ Попробовать самому — это быстрее, чем читать</a></div>
+ </div>
+</section>
+
+<section id="opensource" class="alt">
+ <div class="wrap">
+  <div class="os reveal">
+   <div>
+    <div class="eyebrow">Open source</div>
+    <h2 class="sec-h">Открытый код. <span class="grad">Навсегда открытый.</span></h2>
+    <p class="sec-p">«Нодония» — свободное программное обеспечение под лицензией <b>GNU AGPL‑3.0</b>. Вы можете использовать, изучать, изменять и распространять её — в том числе в колледже и в коммерческих проектах. Единственное условие: если вы улучшаете «Нодонию» и даёте пользоваться ей другим (даже через сайт), вы публикуете свои улучшения на тех же условиях.</p>
+    <div class="chips"><span class="chip">AGPL-3.0-or-later</span><span class="chip">HTML · CSS · JS</span><span class="chip">без фреймворков</span><span class="chip">без трекеров</span><span class="chip">офлайн</span></div>
+    <div class="cta" style="justify-content:flex-start"><a class="btn" data-cfg="repo" href="#" target="_blank" rel="noopener" hidden>Исходный код на GitHub</a><a class="btn" href="#feedback">Предложить улучшение</a></div>
+   </div>
+   <div class="lic"><b>$</b> git clone …/nodonia<br><b>$</b> python3 -m http.server 8080<br><span style="color:var(--ac)">→ http://localhost:8080</span><br><br># свой протокол — это один файл:<br># ND.registerProtocol({ id, onMessage,<br>#   onTimer, invariants, … })<br># см. docs/Техническая_документация.md</div>
+  </div>
+ </div>
+</section>
+
+<section id="support" class="don">
+ <div class="wrap">
+  <div class="heart-ic">❤</div>
+  <div class="eyebrow">Поддержать развитие</div>
+  <h2 class="sec-h reveal" style="margin:0 auto">Проект делает один преподаватель. <span class="grad">С вашей помощью — быстрее.</span></h2>
+  <p class="sec-p reveal" style="margin-left:auto;margin-right:auto">Нодония была и останется бесплатной. Но домен, хостинг, время на новые протоколы, лабораторные и проверку каждой функции стоят ресурсов. Если проект помог вам или вашим студентам — поддержите его любой суммой.</p>
+  <div class="goals reveal">
+   <div class="goal"><b>🌍 Домен и хостинг</b><span>Чтобы сайт открывался быстро и всегда.</span></div>
+   <div class="goal"><b>🧪 Новые протоколы</b><span>Больше алгоритмов, сценариев и заданий.</span></div>
+   <div class="goal"><b>🧰 Качество</b><span>Тесты, проверка формул и аккуратная документация.</span></div>
+  </div>
+  <div id="donate-methods"></div>
+  <p id="donate-soon" class="note" style="margin:30px auto 0;text-align:center" hidden>Способы поддержки появятся здесь совсем скоро.</p>
+  <p class="free-ways">Нет возможности донатить? Это тоже помощь: <b>поставьте звезду</b> на GitHub, <b>расскажите</b> студентам и коллегам, <b>сообщите об ошибке</b> или предложите идею.</p>
+ </div>
+</section>
+
+<section id="faq" class="alt">
+ <div class="wrap" style="max-width:860px">
+  <div class="eyebrow">Вопросы</div>
+  <h2 class="sec-h reveal">Коротко <span class="grad">о главном</span></h2>
+  <div style="margin-top:36px">
+   <details class="faq" open><summary>Это правда бесплатно?</summary><p>Да. Нет подписок, рекламы и скрытых платежей. Поддержка проекта — только добровольная.</p></details>
+   <details class="faq"><summary>Нужно ли что-то устанавливать или регистрироваться?</summary><p>Нет. Откройте страницу симулятора в современном браузере — на ПК, ноутбуке или планшете. Работа и результаты сохраняются в вашем браузере.</p></details>
+   <details class="faq"><summary>Это настоящие реализации Raft, Paxos и PBFT?</summary><p>Это учебные упрощённые реализации с теми же идеями и свойствами безопасности, но без диска, сжатия журнала и других промышленных деталей. Они хорошо подходят, чтобы понять алгоритм и границы его применимости, но не заменяют проверенные библиотеки.</p></details>
+   <details class="faq"><summary>Можно ли хранить в кошельках реальные деньги?</summary><p>Нет. Криптография в симуляторе — учебная модель, работающая в браузере. Ключи и «монеты» нужны для понимания принципов и не предназначены для защиты реальных активов.</p></details>
+   <details class="faq"><summary>Можно ли использовать в колледже и на занятиях?</summary><p>Да, именно для этого проект и создан. Можно открыть на сайте или развернуть у себя: достаточно любого статического веб-сервера. Лицензия AGPL разрешает это бесплатно.</p></details>
+   <details class="faq"><summary>Как работает проверка заданий?</summary><p>Для каждого задания заданы цели в виде проверок состояния симулятора. Пока вы экспериментируете, галочки отмечаются автоматически; результат сохраняется в браузере.</p></details>
+   <details class="faq"><summary>Как сообщить об ошибке или предложить идею?</summary><p>Напишите автору любым способом из раздела «Контакты» или заведите issue в репозитории на GitHub.</p></details>
+  </div>
+ </div>
+</section>
+
+<section id="feedback">
+ <div class="wrap">
+  <div class="eyebrow">Контакты</div>
+  <h2 class="sec-h reveal">Нашли ошибку? <span class="grad">Есть идея?</span></h2>
+  <p class="sec-p reveal">Каждое сообщение читает автор проекта. Пожелания студентов и преподавателей определяют, что появится в следующей версии. Предложения о сотрудничестве тоже приветствуются.</p>
+  <div class="ctl reveal">
+   <a class="ct" href="https://t.me/Giocatory" target="_blank" rel="noopener"><b>Telegram</b><span>@Giocatory</span></a>
+   <a class="ct" href="tel:+79965845547"><b>Max</b><span>+7 996 584-54-47</span></a>
+   <a class="ct" href="mailto:python@derkunov.ru"><b>Email</b><span>python@derkunov.ru</span></a>
+   <a class="ct" href="https://tenchat.ru/giocatory" target="_blank" rel="noopener"><b>TenChat</b><span>tenchat.ru/giocatory</span></a>
+   <a class="ct" href="https://github.com/Giocatory" target="_blank" rel="noopener"><b>GitHub</b><span>github.com/Giocatory</span></a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fg">
+   <div><a class="logo" href="#top"><img src="assets/logo.svg" alt="" width="34" height="34">Нодония</a><p style="margin:12px 0 0;max-width:340px">Открытый симулятор распределённых систем и блокчейна. © <span id="year">2026</span></p></div>
+   <nav><a href="nodonia/">Симулятор</a><a href="#screens">Скриншоты</a><a href="#support">Поддержать</a><a href="#feedback">Контакты</a><a href="privacy.html">Конфиденциальность</a><a data-cfg="repo" href="#" hidden>GitHub</a><a data-cfg="tenchat" href="#" hidden>TenChat</a></nav>
+  </div>
+  <p class="disc">Нодония — независимый учебный проект под лицензией AGPL-3.0-or-later; программа предоставляется «как есть», без гарантий. Названия технологий (Raft, Paxos, Bitcoin, Ethereum, Kafka, Cassandra и др.) принадлежат их владельцам и упоминаются только для описания идей и учебных целей; проект с ними не связан и не одобрен ими. Алгоритмы упрощены, а криптографические функции — учебные модели и не предназначены для защиты реальных данных и средств.</p>
+ </div>
+</footer>
+<script src="scripts/config.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
